@@ -1,158 +1,166 @@
 "use client";
 
 import Link from "next/link";
+import Navbar from "../../components/Navbar";
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black text-white px-6 py-20">
+    <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black text-white">
 
-      {/* HERO */}
+      <Navbar />
 
-      <div className="max-w-5xl mx-auto text-center mb-16">
+      <div className="px-6 py-20">
 
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 bg-clip-text text-transparent mb-6">
-          Solana Builder Toolkit
-        </h1>
+        {/* HERO */}
 
-        <p className="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          A toolkit of transparency, analytics, and developer tools designed to help
-          builders and communities launch and manage tokens responsibly on{" "}
-          <span className="text-purple-400 font-semibold">Solana</span>.
-        </p>
+        <div className="max-w-5xl mx-auto text-center mb-16">
 
-      </div>
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 bg-clip-text text-transparent mb-6">
+            Solana Builder Toolkit
+          </h1>
 
-      {/* BADGES */}
+          <p className="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            A toolkit of transparency, analytics, and developer tools designed to help
+            builders and communities launch and manage tokens responsibly on{" "}
+            <span className="text-purple-400 font-semibold">Solana</span>.
+          </p>
 
-      <div className="flex flex-wrap justify-center gap-4 mb-16">
+        </div>
 
-        <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
-          Open Source
-        </span>
+        {/* BADGES */}
 
-        <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
-          Solana Ecosystem Tool
-        </span>
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
 
-        <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
-          Developer Toolkit
-        </span>
+          <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
+            Open Source
+          </span>
 
-        <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
-          Transparency Analytics
-        </span>
+          <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
+            Solana Ecosystem Tool
+          </span>
 
-      </div>
+          <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
+            Developer Toolkit
+          </span>
 
-      {/* TOOLS */}
+          <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
+            Transparency Analytics
+          </span>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20">
+        </div>
 
-        {/* TOKEN TOOL */}
+        {/* TOOLS */}
 
-        <Link href="/token-checker">
-          <div className="cursor-pointer rounded-xl border border-purple-700 bg-black/40 p-8 hover:border-purple-400 transition">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20">
 
-            <div className="flex justify-between items-center mb-4">
+          {/* TOKEN TOOL */}
 
-              <h2 className="text-2xl font-semibold">
-                Token Transparency
-              </h2>
+          <Link href="/token-checker">
 
-              <span className="text-xs px-3 py-1 rounded-full bg-green-500/20 text-green-400 border border-green-500/40">
-                LIVE
-              </span>
+            <div className="cursor-pointer rounded-xl border border-purple-700 bg-black/40 p-8 hover:border-purple-400 transition">
+
+              <div className="flex justify-between items-center mb-4">
+
+                <h2 className="text-2xl font-semibold">
+                  Token Transparency
+                </h2>
+
+                <span className="text-xs px-3 py-1 rounded-full bg-green-500/20 text-green-400 border border-green-500/40">
+                  LIVE
+                </span>
+
+              </div>
+
+              <p className="text-gray-400">
+                Analyze Solana ecosystem tokens and verify transparency signals such as market cap, rankings and price history.
+              </p>
 
             </div>
 
-            <p className="text-gray-400">
-              Analyze Solana ecosystem tokens and verify transparency signals such as market cap, rankings and price history.
+          </Link>
+
+          {/* DAO */}
+
+          <div className="rounded-xl border border-purple-800 bg-black/30 p-8 opacity-80">
+
+            <h2 className="text-2xl font-semibold mb-4">
+              DAO Voting Tool
+            </h2>
+
+            <p className="text-gray-400 mb-3">
+              Create proposals and vote with SPL tokens.
             </p>
 
+            <span className="text-sm text-purple-400">
+              Coming Soon
+            </span>
+
           </div>
-        </Link>
 
-        {/* DAO */}
+          {/* STARTER */}
 
-        <div className="rounded-xl border border-purple-800 bg-black/30 p-8 opacity-80">
+          <div className="rounded-xl border border-purple-800 bg-black/30 p-8 opacity-80">
 
-          <h2 className="text-2xl font-semibold mb-4">
-            DAO Voting Tool
-          </h2>
+            <h2 className="text-2xl font-semibold mb-4">
+              Developer Starter Kit
+            </h2>
 
-          <p className="text-gray-400 mb-3">
-            Create proposals and vote with SPL tokens.
-          </p>
+            <p className="text-gray-400 mb-3">
+              Bootstrap Solana dApps quickly with templates.
+            </p>
 
-          <span className="text-sm text-purple-400">
-            Coming Soon
-          </span>
+            <span className="text-sm text-purple-400">
+              Coming Soon
+            </span>
 
-        </div>
+          </div>
 
-        {/* STARTER */}
+          {/* SAFETY */}
 
-        <div className="rounded-xl border border-purple-800 bg-black/30 p-8 opacity-80">
+          <div className="rounded-xl border border-purple-800 bg-black/30 p-8 opacity-80">
 
-          <h2 className="text-2xl font-semibold mb-4">
-            Developer Starter Kit
-          </h2>
+            <h2 className="text-2xl font-semibold mb-4">
+              Token Launch Safety
+            </h2>
 
-          <p className="text-gray-400 mb-3">
-            Bootstrap Solana dApps quickly with templates.
-          </p>
+            <p className="text-gray-400 mb-3">
+              Checklist for responsible token launches.
+            </p>
 
-          <span className="text-sm text-purple-400">
-            Coming Soon
-          </span>
+            <span className="text-sm text-purple-400">
+              Coming Soon
+            </span>
 
-        </div>
-
-        {/* SAFETY */}
-
-        <div className="rounded-xl border border-purple-800 bg-black/30 p-8 opacity-80">
-
-          <h2 className="text-2xl font-semibold mb-4">
-            Token Launch Safety
-          </h2>
-
-          <p className="text-gray-400 mb-3">
-            Checklist for responsible token launches.
-          </p>
-
-          <span className="text-sm text-purple-400">
-            Coming Soon
-          </span>
+          </div>
 
         </div>
 
-      </div>
+        {/* PROJECT LINKS */}
 
-      {/* PROJECT LINKS */}
+        <div className="max-w-4xl mx-auto text-center">
 
-      <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-8">
+            Project Links
+          </h2>
 
-        <h2 className="text-3xl font-bold mb-8">
-          Project Links
-        </h2>
+          <div className="flex flex-wrap justify-center gap-6">
 
-        <div className="flex flex-wrap justify-center gap-6">
+            <a
+              href="https://github.com/calebadekunle/solana-builder-toolkit"
+              target="_blank"
+              className="px-6 py-3 rounded-lg border border-purple-500 hover:bg-purple-700 transition"
+            >
+              View GitHub Repository
+            </a>
 
-          <a
-            href="https://github.com/calebadekunle/solana-builder-toolkit"
-            target="_blank"
-            className="px-6 py-3 rounded-lg border border-purple-500 hover:bg-purple-700 transition"
-          >
-            View GitHub Repository
-          </a>
+            <a
+              href="/token-checker"
+              className="px-6 py-3 rounded-lg border border-purple-500 hover:bg-purple-700 transition"
+            >
+              Open Token Transparency Tool
+            </a>
 
-          <a
-            href="https://solana-builder-toolkit.vercel.app/token-checker"
-            target="_blank"
-            className="px-6 py-3 rounded-lg border border-purple-500 hover:bg-purple-700 transition"
-          >
-            Open Token Transparency Tool
-          </a>
+          </div>
 
         </div>
 
