@@ -1,190 +1,197 @@
 "use client";
 
 import { useState } from "react";
-
 import {
-  Chart as ChartJS,
-  LineElement,
-  PointElement,
-  LinearScale,
-  CategoryScale
-} from "chart.js";
-
-import { Line } from "react-chartjs-2";
-
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale);
+  LineChart,
+  Line,
+  XAxis,
+  Tooltip,
+  ResponsiveContainer
+} from "recharts";
 
 export default function TokenChecker() {
 
   const [query, setQuery] = useState("");
-  const [result, setResult] = useState<any>(null);
+  const [data, setData] = useState<any>(null);
+  const [error, setError] = useState("");
 
-  const checkToken = async () => {
+  const analyze = async () => {
+
+    setError("");
+    setData(null);
 
     const res = await fetch(`/api/token?address=${query}`);
+    const json = await res.json();
 
-    const data = await res.json();
-
-    setResult(data);
+    if (json.error) {
+      setError(json.error);
+    } else {
+      setData(json);
+    }
 
   };
 
-  // Chart Data
-  const chartData =
-    result?.chart && result.chart.length > 0
-      ? {
-          labels: result.chart.map((_: any, i: number) => i),
-          datasets: [
-            {
-              data: result.chart,
-              borderColor: "#a855f7",
-              backgroundColor: "rgba(168,85,247,0.2)",
-              borderWidth: 2,
-              pointRadius: 0,
-              tension: 0.3
-            }
-          ]
-        }
-      : null;
-
-  // Token Health Indicator
-  let healthScore: number | null = null;
-  let healthLabel = "";
-
-  if (result && !result.error) {
-
-    const rank = result.market_cap_rank || 1000;
-
-    if (rank <= 10) {
-      healthScore = 95;
-      healthLabel = "Very Strong Market Presence";
-    }
-    else if (rank <= 100) {
-      healthScore = 80;
-      healthLabel = "Healthy Market Activity";
-    }
-    else if (rank <= 300) {
-      healthScore = 60;
-      healthLabel = "Moderate Market Presence";
-    }
-    else {
-      healthScore = 40;
-      healthLabel = "Low Market Visibility";
-    }
-
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black text-white p-10">
 
-      <h1 className="text-4xl font-bold mb-8 text-center">
-        Token Transparency Tool
-      </h1>
+    <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black text-white px-6 py-20">
 
-      <div className="flex justify-center">
+      <div className="max-w-4xl mx-auto">
 
-        <input
-          placeholder="Search Solana token (SOL, BONK, JUP)"
-          value={query}
-          onChange={(e)=>setQuery(e.target.value)}
-          className="p-3 w-96 rounded-l-lg bg-black border border-purple-600"
-        />
+        <h1 className="text-4xl font-bold text-center mb-10">
+          Token Transparency Tool
+        </h1>
 
-        <button
-          onClick={checkToken}
-          className="bg-purple-600 px-6 rounded-r-lg hover:bg-purple-700"
-        >
-          Analyze
-        </button>
+        {/* SEARCH */}
+
+        <div className="flex gap-4 mb-12">
+
+          <input
+            className="flex-1 p-3 rounded bg-black/40 border border-purple-700"
+            placeholder="Enter Solana token (SOL, BONK, JUP)"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+
+          <button
+            onClick={analyze}
+            className="px-6 py-3 bg-purple-600 rounded hover:bg-purple-700"
+          >
+            Analyze
+          </button>
+
+        </div>
+
+        {error && (
+          <p className="text-red-400 mb-6">{error}</p>
+        )}
+
+        {data && (
+
+          <div>
+
+            {/* TOKEN HEADER */}
+
+            <div className="text-center mb-10">
+
+              <img
+                src={data.image}
+                className="w-16 mx-auto mb-4"
+              />
+
+              <h2 className="text-3xl font-bold">
+                {data.name}
+              </h2>
+
+              <p className="text-gray-400">
+                Symbol: {data.symbol.toUpperCase()}
+              </p>
+
+            </div>
+
+            {/* ANALYTICS CARDS */}
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+
+              <div className="bg-black/40 border border-purple-800 p-4 rounded-lg text-center">
+
+                <p className="text-gray-400 text-sm">Price</p>
+
+                <p className="text-xl font-semibold">
+                  ${data.price?.toLocaleString()}
+                </p>
+
+              </div>
+
+              <div className="bg-black/40 border border-purple-800 p-4 rounded-lg text-center">
+
+                <p className="text-gray-400 text-sm">Market Cap</p>
+
+                <p className="text-xl font-semibold">
+                  ${data.market_cap?.toLocaleString()}
+                </p>
+
+              </div>
+
+              <div className="bg-black/40 border border-purple-800 p-4 rounded-lg text-center">
+
+                <p className="text-gray-400 text-sm">Rank</p>
+
+                <p className="text-xl font-semibold">
+                  #{data.market_cap_rank}
+                </p>
+
+              </div>
+
+              <div className="bg-black/40 border border-purple-800 p-4 rounded-lg text-center">
+
+                <p className="text-gray-400 text-sm">24h Change</p>
+
+                <p className="text-xl font-semibold">
+                  {data.change_24h?.toFixed(2)}%
+                </p>
+
+              </div>
+
+            </div>
+
+            {/* CHART */}
+
+            <div className="bg-black/40 border border-purple-800 p-6 rounded-lg mb-10">
+
+              <ResponsiveContainer width="100%" height={300}>
+
+                <LineChart
+                  data={data.chart.map((price: number, i: number) => ({
+                    index: i,
+                    price
+                  }))}
+                >
+
+                  <XAxis dataKey="index" hide />
+
+                  <Tooltip />
+
+                  <Line
+                    type="monotone"
+                    dataKey="price"
+                    stroke="#a855f7"
+                    dot={false}
+                  />
+
+                </LineChart>
+
+              </ResponsiveContainer>
+
+            </div>
+
+            {/* TRANSPARENCY REPORT */}
+
+            <div className="border-t border-purple-900 pt-6">
+
+              <h3 className="text-xl font-semibold mb-4">
+                Transparency Report
+              </h3>
+
+              <ul className="text-gray-300 space-y-2">
+
+                <li>✔ Token recognized by major crypto data providers</li>
+
+                <li>✔ Market cap publicly tracked</li>
+
+                <li>✔ Ranked in global crypto markets</li>
+
+              </ul>
+
+            </div>
+
+          </div>
+
+        )}
 
       </div>
 
-      {result && !result.error && (
-        <div className="mt-12 max-w-xl mx-auto bg-black/50 border border-purple-700 rounded-xl p-6 text-center">
-
-          <img
-            src={result.image}
-            alt="token"
-            className="w-20 h-20 mx-auto mb-4"
-          />
-
-          <h2 className="text-2xl font-bold mb-2">
-            {result.name}
-          </h2>
-
-          <p className="text-gray-400 mb-2">
-            Symbol: {result.symbol?.toUpperCase()}
-          </p>
-
-          <p className="mb-2">
-            Price: ${result.price?.toLocaleString()}
-          </p>
-
-          <p className="mb-2">
-            Market Cap: ${result.market_cap?.toLocaleString()}
-          </p>
-
-          <p className="text-gray-400">
-            Market Cap Rank: #{result.market_cap_rank}
-          </p>
-
-          {/* PRICE CHART */}
-
-          {chartData && (
-            <div className="mt-8">
-              <Line data={chartData} />
-            </div>
-          )}
-
-          {/* TRANSPARENCY REPORT */}
-
-          <div className="mt-6 border-t border-purple-700 pt-4 text-left">
-
-            <h3 className="text-lg font-semibold mb-2">
-              Transparency Report
-            </h3>
-
-            <p className="text-gray-400">
-              ✔ Token recognized by major crypto data providers
-            </p>
-
-            <p className="text-gray-400">
-              ✔ Market cap publicly tracked
-            </p>
-
-            <p className="text-gray-400">
-              ✔ Ranked in global crypto markets
-            </p>
-
-          </div>
-
-          {/* HEALTH INDICATOR */}
-
-          <div className="mt-6 border-t border-purple-700 pt-4 text-left">
-
-            <h3 className="text-lg font-semibold mb-2">
-              Token Health Indicator
-            </h3>
-
-            <p className="text-gray-300">
-              Score: <b>{healthScore} / 100</b>
-            </p>
-
-            <p className="text-purple-400">
-              {healthLabel}
-            </p>
-
-          </div>
-
-        </div>
-      )}
-
-      {result?.error && (
-        <p className="text-red-400 text-center mt-10">
-          {result.error}
-        </p>
-      )}
-
     </div>
+
   );
+
 }

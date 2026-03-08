@@ -9,7 +9,6 @@ export async function GET(req: Request) {
 
   try {
 
-    // Search token
     const search = await fetch(
       `https://api.coingecko.com/api/v3/search?query=${query}`
     );
@@ -22,15 +21,14 @@ export async function GET(req: Request) {
 
     const coin = searchData.coins[0];
 
-    // Fetch detailed token info
     const details = await fetch(
       `https://api.coingecko.com/api/v3/coins/${coin.id}?sparkline=true`
     );
 
     const coinData = await details.json();
 
-    // CHECK IF TOKEN BELONGS TO SOLANA ECOSYSTEM
     const categories = coinData.categories || [];
+
     const isSolanaToken =
       categories.includes("Solana Ecosystem") ||
       coinData.asset_platform_id === "solana";
@@ -48,6 +46,8 @@ export async function GET(req: Request) {
       price: coinData.market_data?.current_price?.usd,
       market_cap: coinData.market_data?.market_cap?.usd,
       market_cap_rank: coinData.market_cap_rank,
+      change_24h: coinData.market_data?.price_change_percentage_24h,
+      volume: coinData.market_data?.total_volume?.usd,
       chart: coinData.market_data?.sparkline_7d?.price || []
     });
 
