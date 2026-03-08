@@ -2,6 +2,18 @@
 
 import { useState } from "react";
 
+import {
+  Chart as ChartJS,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale
+} from "chart.js";
+
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale);
+
 export default function TokenChecker() {
 
   const [query, setQuery] = useState("");
@@ -16,6 +28,51 @@ export default function TokenChecker() {
     setResult(data);
 
   };
+
+  // Chart Data
+  const chartData =
+    result?.chart && result.chart.length > 0
+      ? {
+          labels: result.chart.map((_: any, i: number) => i),
+          datasets: [
+            {
+              data: result.chart,
+              borderColor: "#a855f7",
+              backgroundColor: "rgba(168,85,247,0.2)",
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.3
+            }
+          ]
+        }
+      : null;
+
+  // Token Health Indicator
+  let healthScore: number | null = null;
+  let healthLabel = "";
+
+  if (result && !result.error) {
+
+    const rank = result.market_cap_rank || 1000;
+
+    if (rank <= 10) {
+      healthScore = 95;
+      healthLabel = "Very Strong Market Presence";
+    }
+    else if (rank <= 100) {
+      healthScore = 80;
+      healthLabel = "Healthy Market Activity";
+    }
+    else if (rank <= 300) {
+      healthScore = 60;
+      healthLabel = "Moderate Market Presence";
+    }
+    else {
+      healthScore = 40;
+      healthLabel = "Low Market Visibility";
+    }
+
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black text-white p-10">
@@ -56,7 +113,7 @@ export default function TokenChecker() {
           </h2>
 
           <p className="text-gray-400 mb-2">
-            Symbol: {result.symbol.toUpperCase()}
+            Symbol: {result.symbol?.toUpperCase()}
           </p>
 
           <p className="mb-2">
@@ -70,6 +127,16 @@ export default function TokenChecker() {
           <p className="text-gray-400">
             Market Cap Rank: #{result.market_cap_rank}
           </p>
+
+          {/* PRICE CHART */}
+
+          {chartData && (
+            <div className="mt-8">
+              <Line data={chartData} />
+            </div>
+          )}
+
+          {/* TRANSPARENCY REPORT */}
 
           <div className="mt-6 border-t border-purple-700 pt-4 text-left">
 
@@ -87,6 +154,24 @@ export default function TokenChecker() {
 
             <p className="text-gray-400">
               ✔ Ranked in global crypto markets
+            </p>
+
+          </div>
+
+          {/* HEALTH INDICATOR */}
+
+          <div className="mt-6 border-t border-purple-700 pt-4 text-left">
+
+            <h3 className="text-lg font-semibold mb-2">
+              Token Health Indicator
+            </h3>
+
+            <p className="text-gray-300">
+              Score: <b>{healthScore} / 100</b>
+            </p>
+
+            <p className="text-purple-400">
+              {healthLabel}
             </p>
 
           </div>
