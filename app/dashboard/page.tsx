@@ -6,9 +6,9 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black text-white px-6 py-20">
 
-      {/* HERO SECTION */}
+      {/* HERO */}
 
-      <div className="max-w-5xl mx-auto text-center mb-20">
+      <div className="max-w-5xl mx-auto text-center mb-16">
 
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 bg-clip-text text-transparent mb-6">
           Solana Builder Toolkit
@@ -19,6 +19,28 @@ export default function Dashboard() {
           builders and communities launch and manage tokens responsibly on{" "}
           <span className="text-purple-400 font-semibold">Solana</span>.
         </p>
+
+      </div>
+
+      {/* ECOSYSTEM BADGES */}
+
+      <div className="flex flex-wrap justify-center gap-4 mb-16">
+
+        <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
+          Open Source
+        </span>
+
+        <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
+          Solana Ecosystem Tool
+        </span>
+
+        <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
+          Developer Toolkit
+        </span>
+
+        <span className="px-4 py-2 rounded-full border border-purple-600 bg-black/40 text-purple-300 text-sm">
+          Transparency Analytics
+        </span>
 
       </div>
 
@@ -62,7 +84,7 @@ export default function Dashboard() {
           </h2>
 
           <p className="text-gray-400 mb-3">
-            Create proposals and vote using SPL tokens.
+            Create proposals and vote with SPL tokens.
           </p>
 
           <span className="text-sm text-purple-400">
@@ -80,7 +102,7 @@ export default function Dashboard() {
           </h2>
 
           <p className="text-gray-400 mb-3">
-            Bootstrap Solana dApps quickly with templates and developer utilities.
+            Bootstrap Solana dApps quickly with templates.
           </p>
 
           <span className="text-sm text-purple-400">
@@ -98,7 +120,7 @@ export default function Dashboard() {
           </h2>
 
           <p className="text-gray-400 mb-3">
-            Checklist and safety signals for responsible token launches.
+            Checklist for responsible token launches.
           </p>
 
           <span className="text-sm text-purple-400">
