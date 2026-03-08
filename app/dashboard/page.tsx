@@ -22,7 +22,7 @@ export default function Dashboard() {
 
       </div>
 
-      {/* ECOSYSTEM BADGES */}
+      {/* BADGES */}
 
       <div className="flex flex-wrap justify-center gap-4 mb-16">
 
@@ -44,17 +44,16 @@ export default function Dashboard() {
 
       </div>
 
-      {/* TOOL GRID */}
+      {/* TOOLS */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20">
 
-        {/* TOKEN TRANSPARENCY */}
+        {/* TOKEN TOOL */}
 
         <Link href="/token-checker">
+          <div className="cursor-pointer rounded-xl border border-purple-700 bg-black/40 p-8 hover:border-purple-400 transition">
 
-          <div className="group cursor-pointer rounded-xl border border-purple-700 bg-black/40 backdrop-blur-md p-8 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-900/40 transition">
-
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex justify-between items-center mb-4">
 
               <h2 className="text-2xl font-semibold">
                 Token Transparency
@@ -67,15 +66,13 @@ export default function Dashboard() {
             </div>
 
             <p className="text-gray-400">
-              Analyze Solana ecosystem tokens and verify transparency signals such as
-              market cap, price trends, rankings, and token health indicators.
+              Analyze Solana ecosystem tokens and verify transparency signals such as market cap, rankings and price history.
             </p>
 
           </div>
-
         </Link>
 
-        {/* DAO TOOL */}
+        {/* DAO */}
 
         <div className="rounded-xl border border-purple-800 bg-black/30 p-8 opacity-80">
 
@@ -93,7 +90,7 @@ export default function Dashboard() {
 
         </div>
 
-        {/* DEV STARTER */}
+        {/* STARTER */}
 
         <div className="rounded-xl border border-purple-800 bg-black/30 p-8 opacity-80">
 
@@ -111,7 +108,7 @@ export default function Dashboard() {
 
         </div>
 
-        {/* TOKEN SAFETY */}
+        {/* SAFETY */}
 
         <div className="rounded-xl border border-purple-800 bg-black/30 p-8 opacity-80">
 
@@ -126,6 +123,36 @@ export default function Dashboard() {
           <span className="text-sm text-purple-400">
             Coming Soon
           </span>
+
+        </div>
+
+      </div>
+
+      {/* PROJECT LINKS */}
+
+      <div className="max-w-4xl mx-auto text-center">
+
+        <h2 className="text-3xl font-bold mb-8">
+          Project Links
+        </h2>
+
+        <div className="flex flex-wrap justify-center gap-6">
+
+          <a
+            href="https://github.com/calebadekunle/solana-builder-toolkit"
+            target="_blank"
+            className="px-6 py-3 rounded-lg border border-purple-500 hover:bg-purple-700 transition"
+          >
+            View GitHub Repository
+          </a>
+
+          <a
+            href="https://solana-builder-toolkit.vercel.app/token-checker"
+            target="_blank"
+            className="px-6 py-3 rounded-lg border border-purple-500 hover:bg-purple-700 transition"
+          >
+            Open Token Transparency Tool
+          </a>
 
         </div>
 
