@@ -9,7 +9,7 @@ export async function GET(req: Request) {
 
   try {
 
-    // Search for token
+    // Search token
     const search = await fetch(
       `https://api.coingecko.com/api/v3/search?query=${query}`
     );
@@ -22,12 +22,24 @@ export async function GET(req: Request) {
 
     const coin = searchData.coins[0];
 
-    // Get full coin details WITH sparkline data
+    // Fetch detailed token info
     const details = await fetch(
       `https://api.coingecko.com/api/v3/coins/${coin.id}?sparkline=true`
     );
 
     const coinData = await details.json();
+
+    // CHECK IF TOKEN BELONGS TO SOLANA ECOSYSTEM
+    const categories = coinData.categories || [];
+    const isSolanaToken =
+      categories.includes("Solana Ecosystem") ||
+      coinData.asset_platform_id === "solana";
+
+    if (!isSolanaToken) {
+      return Response.json({
+        error: "This token is not part of the Solana ecosystem"
+      });
+    }
 
     return Response.json({
       name: coinData.name,
@@ -41,7 +53,9 @@ export async function GET(req: Request) {
 
   } catch (error) {
 
-    return Response.json({ error: "API request failed" });
+    return Response.json({
+      error: "Failed to fetch token data"
+    });
 
   }
 
