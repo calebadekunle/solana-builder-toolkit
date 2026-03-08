@@ -1,36 +1,165 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Solana Builder Toolkit
 
-## Getting Started
+A collection of essential tools designed to help developers, token creators, and communities build more transparently and responsibly on the Solana ecosystem.
 
-First, run the development server:
+This project aims to improve **token transparency, developer productivity, and community governance** within the Solana network.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Overview
+
+Solana Builder Toolkit provides a growing suite of tools that simplify key workflows for Web3 builders and token communities.
+
+The platform currently includes a live **Token Transparency Tool** and plans to introduce additional utilities focused on governance, safety, and developer productivity.
+
+The goal is to create a lightweight developer toolkit that promotes **transparency, responsible token launches, and better on-chain communities.**
+
+---
+
+## Live Tool
+
+### Token Transparency Tool (LIVE)
+
+The Token Transparency Tool allows users to analyze Solana ecosystem tokens and quickly verify key transparency indicators.
+
+Features include:
+
+* Token metadata lookup
+* Market price tracking
+* Market capitalization visibility
+* Global market ranking
+* 7-day price chart visualization
+* Token health indicator
+* Transparency report summary
+
+This helps users determine whether a token is actively tracked in major crypto data sources and understand its market presence.
+
+---
+
+## Planned Tools
+
+### DAO Voting Tool (Coming Soon)
+
+A governance interface for communities to create proposals and vote using SPL tokens.
+
+Planned features:
+
+* Proposal creation
+* Token-weighted voting
+* Wallet integration
+* Governance history tracking
+
+---
+
+### Developer Starter Kit (Coming Soon)
+
+A set of templates and utilities to help developers bootstrap Solana applications faster.
+
+Planned features:
+
+* dApp starter templates
+* smart contract examples
+* wallet integration boilerplates
+
+---
+
+### Token Launch Safety (Coming Soon)
+
+A checklist-style tool designed to help creators launch tokens responsibly.
+
+Planned checks include:
+
+* Liquidity transparency
+* contract verification guidance
+* launch risk indicators
+
+---
+
+## Architecture
+
+This project is built using a modern Web3-friendly stack.
+
+**Frontend**
+
+* Next.js
+* React
+* TailwindCSS
+* Chart.js
+
+**Data Sources**
+
+* CoinGecko API for market data
+
+**Design Goals**
+
+* Lightweight
+* fast UI
+* developer friendly
+* easily extensible
+
+---
+
+## Running Locally
+
+Clone the repository:
+
+```
+git clone https://github.com/calebadekunle/solana-builder-toolkit.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Navigate into the project:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+cd solana-builder-toolkit
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Install dependencies:
 
-## Learn More
+```
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open in your browser:
 
-## Deploy on Vercel
+```
+http://localhost:3000
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Roadmap
+
+Planned improvements include:
+
+* wallet integration
+* on-chain governance module
+* SPL token analytics
+* liquidity analysis
+* token risk scoring
+* Solana RPC integrations
+
+---
+
+## Contribution
+
+Contributions and suggestions are welcome as the toolkit expands.
+
+---
+
+## License
+
+MIT License
+
+---
+
+## Vision
+
+The long-term vision for Solana Builder Toolkit is to become a **developer-friendly transparency and tooling hub** for projects building on Solana.
+
+By making transparency tools more accessible, the project aims to support healthier ecosystems and more responsible token launches.
