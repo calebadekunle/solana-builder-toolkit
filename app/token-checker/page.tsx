@@ -15,12 +15,16 @@ export default function TokenChecker() {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState("");
 
-  const analyze = async () => {
+  const trending = ["sol", "bonk", "jupiter", "pyth", "raydium"];
+
+  const analyze = async (token?: string) => {
+
+    const q = token || query;
 
     setError("");
     setData(null);
 
-    const res = await fetch(`/api/token?address=${query}`);
+    const res = await fetch(`/api/token?address=${q}`);
     const json = await res.json();
 
     if (json.error) {
@@ -41,6 +45,32 @@ export default function TokenChecker() {
           Token Transparency Tool
         </h1>
 
+        {/* TRENDING TOKENS */}
+
+        <div className="mb-12">
+
+          <h2 className="text-xl font-semibold mb-4">
+            Trending Solana Tokens
+          </h2>
+
+          <div className="flex flex-wrap gap-3">
+
+            {trending.map((token) => (
+
+              <button
+                key={token}
+                onClick={() => analyze(token)}
+                className="px-4 py-2 bg-black/40 border border-purple-700 rounded hover:bg-purple-700 transition"
+              >
+                {token.toUpperCase()}
+              </button>
+
+            ))}
+
+          </div>
+
+        </div>
+
         {/* SEARCH */}
 
         <div className="flex gap-4 mb-12">
@@ -53,7 +83,7 @@ export default function TokenChecker() {
           />
 
           <button
-            onClick={analyze}
+            onClick={() => analyze()}
             className="px-6 py-3 bg-purple-600 rounded hover:bg-purple-700"
           >
             Analyze
