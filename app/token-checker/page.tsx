@@ -93,43 +93,31 @@ export default function TokenChecker() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
 
               <div className="bg-black/40 border border-purple-800 p-4 rounded-lg text-center">
-
                 <p className="text-gray-400 text-sm">Price</p>
-
                 <p className="text-xl font-semibold">
                   ${data.price?.toLocaleString()}
                 </p>
-
               </div>
 
               <div className="bg-black/40 border border-purple-800 p-4 rounded-lg text-center">
-
                 <p className="text-gray-400 text-sm">Market Cap</p>
-
                 <p className="text-xl font-semibold">
                   ${data.market_cap?.toLocaleString()}
                 </p>
-
               </div>
 
               <div className="bg-black/40 border border-purple-800 p-4 rounded-lg text-center">
-
                 <p className="text-gray-400 text-sm">Rank</p>
-
                 <p className="text-xl font-semibold">
                   #{data.market_cap_rank}
                 </p>
-
               </div>
 
               <div className="bg-black/40 border border-purple-800 p-4 rounded-lg text-center">
-
                 <p className="text-gray-400 text-sm">24h Change</p>
-
                 <p className="text-xl font-semibold">
                   {data.change_24h?.toFixed(2)}%
                 </p>
-
               </div>
 
             </div>
@@ -161,6 +149,40 @@ export default function TokenChecker() {
                 </LineChart>
 
               </ResponsiveContainer>
+
+            </div>
+
+            {/* TOKEN DETAILS */}
+
+            <div className="bg-black/40 border border-purple-800 p-6 rounded-lg mb-10">
+
+              <h3 className="text-xl font-semibold mb-6">
+                Token Details
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+
+                <div>
+                  <span className="text-gray-400">Symbol:</span>{" "}
+                  {data.symbol.toUpperCase()}
+                </div>
+
+                <div>
+                  <span className="text-gray-400">Market Rank:</span>{" "}
+                  #{data.market_cap_rank}
+                </div>
+
+                <div>
+                  <span className="text-gray-400">24h Volume:</span>{" "}
+                  ${data.volume?.toLocaleString()}
+                </div>
+
+                <div>
+                  <span className="text-gray-400">Blockchain:</span>{" "}
+                  Solana
+                </div>
+
+              </div>
 
             </div>
 
